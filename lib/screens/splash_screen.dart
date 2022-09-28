@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:news_app/screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -8,12 +11,28 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  void moveToNextPage() {
+    print("Hello");
+
+    //unnamed route
+    Navigator.pushReplacement(context, MaterialPageRoute(
+      builder: (c) => const LoginScreen(),
+    ));
+  }
+
+  @override
+  void initState() {
+    print("Hi");
+    Timer(const Duration(seconds: 2), moveToNextPage);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
         height: 50,
-        child: Center(
+        child: const Center(
           child: Text("My News App"),
         ),
       ),
@@ -26,7 +45,6 @@ class _SplashScreenState extends State<SplashScreen> {
               "assets/logo.png",
               height: 180,
             ),
-            //TODO: Add new Widgets
           ],
         ),
       ),
