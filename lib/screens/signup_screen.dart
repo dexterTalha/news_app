@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/screens/signup_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   bool isObscure = true;
 
   @override
@@ -44,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 50,
                 ),
                 const Text(
-                  "LOGIN",
+                  "Sign Up",
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -52,6 +51,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(
                   height: 50,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.person),
+                    labelText: "Name",
+                    hintText: "Enter your full name",
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
@@ -82,17 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text("Forgot Password?"),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 ElevatedButton(
                   onPressed: () {},
@@ -105,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: const Center(
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 12),
-                      child: Text("Log In"),
+                      child: Text("Sign Up"),
                     ),
                   ),
                 ),
@@ -176,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "Don't have an Account?",
+                    "Already have an account?",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black.withOpacity(0.6),
@@ -185,16 +184,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (c) => const SignUpScreen(),
-                      ),
-                    );
+                    Navigator.pop(context);
                   },
                   child: const Align(
                     child: Text(
-                      "Create New",
+                      "Login",
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.blue,
