@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/components/text_component.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -172,16 +173,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Already have an account?",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black.withOpacity(0.6),
-                    ),
-                  ),
-                ),
+                const TextComp(text: "Already have an account?"),
                 GestureDetector(
                   onTap: () {
                     Navigator.pop(context);

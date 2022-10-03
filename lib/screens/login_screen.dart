@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/components/text_component.dart';
 import 'package:news_app/screens/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -173,16 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Don't have an Account?",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black.withOpacity(0.6),
-                    ),
-                  ),
-                ),
+                const TextComp(text: "Don't you have an account?"),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
