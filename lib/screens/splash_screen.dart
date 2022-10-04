@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/login_screen.dart';
 
@@ -15,15 +16,17 @@ class _SplashScreenState extends State<SplashScreen> {
     print("Hello");
 
     //unnamed route
-    Navigator.pushReplacement(context, MaterialPageRoute(
-      builder: (c) => const LoginScreen(),
-    ));
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (c) => const LoginScreen(),
+        ));
   }
 
   @override
   void initState() {
     print("Hi");
-    Timer(const Duration(seconds: 2), moveToNextPage);
+    // Timer(const Duration(seconds: 2), moveToNextPage);
     super.initState();
   }
 
@@ -41,9 +44,15 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              "assets/logo.png",
-              height: 180,
+            FadedSlideAnimation(
+              beginOffset: Offset(0, -10),
+              endOffset: Offset(0, 0),
+              // fadeDuration: Duration.zero,
+              // scaleDuration: Duration.zero,
+              child: Image.asset(
+                "assets/logo.png",
+                height: 180,
+              ),
             ),
           ],
         ),

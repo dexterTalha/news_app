@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {},
-                    child: Text("Forgot Password?"),
+                    child: const Text("Forgot Password?"),
                   ),
                 ),
                 const SizedBox(
@@ -176,14 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const TextComp(text: "Don't you have an account?"),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (c) => const SignUpScreen(),
-                      ),
-                    );
-                  },
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (c) => const SignUpScreen())),
                   child: const Align(
                     child: Text(
                       "Create New",
