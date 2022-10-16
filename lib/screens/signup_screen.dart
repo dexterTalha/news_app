@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/components/text_component.dart';
 
@@ -10,6 +11,9 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   bool isObscure = true;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 50,
                 ),
                 TextFormField(
+                  controller: _nameController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person),
                     labelText: "Name",
@@ -64,6 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 TextFormField(
+                  controller: _emailController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person),
                     labelText: "Username or Email",
@@ -74,6 +80,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 TextFormField(
+                  controller: _passwordController,
                   obscureText: isObscure,
                   obscuringCharacter: "*",
                   decoration: InputDecoration(
@@ -95,7 +102,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    print(_nameController.text);
+                    // try {
+                    //   final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                    //     email: "",
+                    //     password: "",
+                    //   );
+                    //
+                    // } on FirebaseAuthException catch (e) {
+                    //   if (e.code == 'weak-password') {
+                    //     print('The password provided is too weak.');
+                    //   } else if (e.code == 'email-already-in-use') {
+                    //     print('The account already exists for that email.');
+                    //   }
+                    // } catch (e) {
+                    //   print(e);
+                    // }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepOrange.shade500,
                     shape: RoundedRectangleBorder(
