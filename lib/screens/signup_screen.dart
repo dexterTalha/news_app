@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/components/text_component.dart';
+import 'package:news_app/controller/auth_controller.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -103,22 +104,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    print(_nameController.text);
-                    // try {
-                    //   final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                    //     email: "",
-                    //     password: "",
-                    //   );
-                    //
-                    // } on FirebaseAuthException catch (e) {
-                    //   if (e.code == 'weak-password') {
-                    //     print('The password provided is too weak.');
-                    //   } else if (e.code == 'email-already-in-use') {
-                    //     print('The account already exists for that email.');
-                    //   }
-                    // } catch (e) {
-                    //   print(e);
-                    // }
+                    String name = _nameController.text.trim();
+                    String email = _emailController.text.trim();
+                    String password = _passwordController.text;
+                    if (name.isEmpty || email.isEmpty || password.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Please fill the required field")));
+                      return;
+                    }
+
+                    final User? user = await AuthController(context).createAccount(name: name, email: email, password: password);
+                    if (user == null && mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Error: Unable to create account")));
+                      return;
+                    }
+                    if (mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(user?.email ?? "")));
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepOrange.shade500,
