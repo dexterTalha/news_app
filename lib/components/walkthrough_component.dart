@@ -13,16 +13,20 @@ class WalkThroughComponent extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        const Spacer(),
         Text(
           text,
           style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 30),
         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset(asset),
+          padding: const EdgeInsets.only(top: 10, bottom: 10, right: 50, left: 50),
+          child: Image.asset(
+            asset,
+          ),
         ),
         const SizedBox(height: 30),
+        const Spacer(),
         TextComp(text: secondaryText)
       ],
     );
