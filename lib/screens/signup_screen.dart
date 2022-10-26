@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:news_app/components/text_component.dart';
 import 'package:news_app/controller/auth_controller.dart';
 
+import '../components/auth_component.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
@@ -102,8 +104,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
-                  onPressed: () async {
+                AuthComponent(
+                  primaryText: "SignUp",
+                  onPrimaryClick: () async {
                     String name = _nameController.text.trim();
                     String email = _emailController.text.trim();
                     String password = _passwordController.text;
@@ -121,97 +124,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(user?.email ?? "")));
                     }
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrange.shade500,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: const Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      child: Text("Sign Up"),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "OR",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue.shade900,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        child: const Center(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12),
-                            child: Text(
-                              "Facebook",
-                              style: TextStyle(fontFamily: "fb", fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue.shade500,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        child: const Center(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12),
-                            child: Text(
-                              "Twitter",
-                              style: TextStyle(fontFamily: "twitter", fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const TextComp(text: "Already have an account?"),
-                GestureDetector(
-                  onTap: () {
+                  secondaryText: "Already have an account?",
+                  linkText: "Login",
+                  onLinkTextClick: () {
                     Navigator.pop(context);
                   },
-                  child: const Align(
-                    child: Text(
-                      "Login",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),
