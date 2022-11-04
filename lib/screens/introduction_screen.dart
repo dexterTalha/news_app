@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/components/walkthrough_component.dart';
+import 'package:news_app/controller/common_controller.dart';
+
+import 'login_screen.dart';
 
 class IntroductionScreen extends StatefulWidget {
   const IntroductionScreen({Key? key}) : super(key: key);
@@ -19,24 +22,32 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
 
   final PageController _pageController = PageController(initialPage: 0);
 
+  void getToLogin() async {
+    await CommonController().setIntroductionPref();
+    if (mounted) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (c) => const LoginScreen(),
+          ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.transparent,
       bottomNavigationBar: Container(
-        // decoration: const BoxDecoration(
-        //   gradient: LinearGradient(
-        //     begin: Alignment.topLeft,
-        //     end: Alignment.bottomRight,
-        //     colors: [Colors.purple, Colors.greenAccent, Colors.blue],
-        //   ),
-        // ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: TextButton(onPressed: () {}, child: Text("SKIP")),
+              child: TextButton(
+                onPressed: () {
+                  getToLogin();
+                },
+                child: const Text("SKIP"),
+              ),
             ),
             indicator(),
             Padding(
@@ -45,9 +56,9 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                 height: 50,
                 width: 50,
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (selectedIndex == list.length - 1) {
-                      //new page
+                      getToLogin();
                     } else {
                       selectedIndex++;
                       _pageController.animateToPage(
@@ -81,8 +92,6 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           gradient: RadialGradient(
             radius: 3,
             center: Alignment.bottomRight,
-            // begin: Alignment.topLeft,
-            // end: Alignment.bottomRight,
             colors: [Colors.purple, Colors.greenAccent, Colors.blue],
           ),
         ),
